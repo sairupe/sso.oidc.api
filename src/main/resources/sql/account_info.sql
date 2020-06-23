@@ -1,6 +1,7 @@
 CREATE TABLE `account_info` (
   `account_id` bigint(20) NOT NULL COMMENT '账号ID',
-  `password` bigint(20) NOT NULL COMMENT '账号密码',
+  `password` varchar(32) NOT NULL COMMENT '账号密码',
+  `user_name` varchar(64) NOT NULL COMMENT '用户名',
   `deleted_by` bigint(20) DEFAULT NULL COMMENT '删除人ID',
   `deleted_tm` bigint(20) DEFAULT NULL COMMENT '删除时间戳',
   `created_by` bigint(20) DEFAULT NULL COMMENT '创建人ID',

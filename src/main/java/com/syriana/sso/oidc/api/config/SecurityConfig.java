@@ -1,5 +1,7 @@
 package com.syriana.sso.oidc.api.config;
 
+import com.syriana.sso.oidc.api.service.authorization.UserDetailServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +22,9 @@ import java.util.Collections;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    UserDetailServiceImpl userDetailServicel;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -31,9 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // @formatter: off
+        auth.userDetailsService(userDetailServicel); // 自定义用户验证
         auth.inMemoryAuthentication()
                 .withUser("hellxz")
                 .password(passwordEncoder().encode("xyz"))
