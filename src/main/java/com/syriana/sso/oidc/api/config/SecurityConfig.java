@@ -1,5 +1,7 @@
 package com.syriana.sso.oidc.api.config;
 
+import com.syriana.sso.oidc.api.service.authorization.SelfAuthenticationProvider;
+import com.syriana.sso.oidc.api.service.authorization.SelfBcryptPswEncoder;
 import com.syriana.sso.oidc.api.service.authorization.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,12 +25,11 @@ import java.util.Collections;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailServiceImpl userDetailServicel;
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    UserDetailServiceImpl userDetailServiceImpl;
+    @Autowired
+    SelfAuthenticationProvider selfAuthenticationProvider;
+    @Autowired
+    SelfBcryptPswEncoder selfBcryptPswEncoder;
 
     @Bean
     @Override
@@ -40,10 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // @formatter: off
-        auth.userDetailsService(userDetailServicel); // 自定义用户验证
+        auth.userDetailsService(userDetailServiceImpl); // 自定义用户验证
+        auth.authenticationProvider(selfAuthenticationProvider);// 自定义用户校验器
         auth.inMemoryAuthentication()
                 .withUser("hellxz")
-                .password(passwordEncoder().encode("xyz"))
+                .password(selfBcryptPswEncoder.encode("xyz"))
                 .authorities(Collections.emptyList());
         // @formatter: on
     }
