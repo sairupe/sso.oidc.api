@@ -1,10 +1,8 @@
 package com.syriana.sso.oidc.api.service.authorization;
 
-import com.syriana.sso.oidc.api.exception.IncorrectPasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class SelfAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    UserDetailServiceImpl userDetailService;
+    SelfUserDetailServiceImpl userDetailService;
     @Autowired
     SelfBcryptPswEncoder selfBcryptPswEncoder;
 

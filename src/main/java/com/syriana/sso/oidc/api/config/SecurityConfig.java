@@ -2,7 +2,7 @@ package com.syriana.sso.oidc.api.config;
 
 import com.syriana.sso.oidc.api.service.authorization.SelfAuthenticationProvider;
 import com.syriana.sso.oidc.api.service.authorization.SelfBcryptPswEncoder;
-import com.syriana.sso.oidc.api.service.authorization.UserDetailServiceImpl;
+import com.syriana.sso.oidc.api.service.authorization.SelfUserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ import java.util.Collections;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailServiceImpl userDetailServiceImpl;
+    SelfUserDetailServiceImpl userDetailServiceImpl;
     @Autowired
     SelfAuthenticationProvider selfAuthenticationProvider;
     @Autowired

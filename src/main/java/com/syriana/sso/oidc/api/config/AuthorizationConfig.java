@@ -1,6 +1,5 @@
 package com.syriana.sso.oidc.api.config;
 
-import com.syriana.sso.oidc.api.service.authorization.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
