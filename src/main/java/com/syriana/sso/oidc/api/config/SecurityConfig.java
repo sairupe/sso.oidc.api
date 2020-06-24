@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collections;
 
@@ -40,14 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // @formatter: off
         auth.userDetailsService(userDetailServiceImpl); // 自定义用户验证
-        auth.authenticationProvider(selfAuthenticationProvider);// 自定义用户校验器
+//        auth.authenticationProvider(selfAuthenticationProvider);// 自定义用户校验器
         auth.inMemoryAuthentication()
                 .withUser("hellxz")
                 .password(selfBcryptPswEncoder.encode("xyz"))
                 .authorities(Collections.emptyList());
-        // @formatter: on
     }
 
     @Override
@@ -55,7 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated() //所有请求都需要通过认证
                 .and()
-                .httpBasic() //Basic登录
+                // Basic登录, 如果开启，调用oauth/authorize时，
+                // 选择BASIC AUTH 填入用户账号密码，直接就能选择是否授权
+                // 否则，就要手动登录
+//                .httpBasic()
+//                .and()
+                .formLogin()
                 .and()
                 .csrf().disable(); //关跨域保护
     }

@@ -25,15 +25,12 @@ public class SelfAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        // 获取用户输入的用户名和密码
+//        // 获取用户输入的用户名和密码
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
         // 获取封装用户信息的对象
         UserDetails userDetails = userDetailService.loadUserByUsername(username);
         boolean isMatch = selfBcryptPswEncoder.matches(password, userDetails.getPassword());
-        if (isMatch) {
-            throw new IncorrectPasswordException("用户未查询到!");
-        }
         return null;
     }
 
