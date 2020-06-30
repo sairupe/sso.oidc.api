@@ -16,7 +16,11 @@ import org.springframework.security.oauth2.provider.code.AuthorizationCodeServic
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.Arrays;
 
 /**
  * @author syriana.zh
@@ -36,6 +40,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private TokenStore tokenStore;
     @Autowired
     private AuthorizationCodeServices authorizationCodeServices;
+    @Autowired
+    JwtAccessTokenConverter jwtAccessTokenConverter;
 
     // 令牌访问端点配置和令牌服务配置
     @Override
@@ -75,9 +81,14 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Bean
     public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices services = new DefaultTokenServices();
-        services.setClientDetailsService(clientDetailsService);
-        services.setSupportRefreshToken(true);
-        services.setTokenStore(tokenStore);
+        services.setClientDetailsService(clientDetailsService);// 客户端详情服务
+        services.setSupportRefreshToken(true);// 支持刷新令牌
+        services.setTokenStore(tokenStore);// 令牌储存策略
+        // 设置令牌增强
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
+        services.setTokenEnhancer(tokenEnhancerChain);
+        // 有效和刷新时间
         services.setAccessTokenValiditySeconds(7200);
         services.setRefreshTokenValiditySeconds(259200);
         return services;
