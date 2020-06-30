@@ -16,6 +16,6 @@ public class SelfGrantedAuthority implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return null;
+        return authroity;
     }
 }

@@ -1,12 +1,16 @@
 package com.syriana.sso.oidc.api.service.authorization;
 
+import com.syriana.sso.oidc.api.bo.ErpUserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import java.util.Collection;
 
 /**
  * @author syriana.zh
@@ -17,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class SelfAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    SelfUserDetailServiceImpl userDetailService;
+    SelfUserDetailServiceImpl selfUserDetailService;
     @Autowired
     SelfBcryptPswEncoder selfBcryptPswEncoder;
 
@@ -27,10 +31,13 @@ public class SelfAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
         // 获取封装用户信息的对象
-        UserDetails userDetails = userDetailService.loadUserByUsername(username);
-        boolean isMatch = selfBcryptPswEncoder.matches(password, userDetails.getPassword());
-        return null;
+        UserDetails userDetails = selfUserDetailService.loadUserByUsername(username);
+        ErpUserDetail erpUserDetail = (ErpUserDetail) userDetails;
+        SelfAuth selfAuth = new SelfAuth();
+        selfAuth.setErpUserDetail(erpUserDetail);
+        return selfAuth;
     }
+
 
     @Override
     public boolean supports(Class<?> aClass) {
