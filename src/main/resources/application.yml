@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driverClassName: ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+    url: ${DATASOURCE_URL:jdbc:mysql://47.106.92.100:3306/erp_sso_oidc?useUnicode=true&characterEncoding=UTF-8}
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:123456}
+
+    redis:
+      password: ${REDIS_PASSWORD:ujuz!@#$%}
+      database: ${REDIS_DATABASE:10}
+      port: ${REDIS_PORT:6379}
+      host: ${REDIS_HOST:123.58.51.6}
+      timeout: ${REDIS_TIMEOUT:10000}
+
+pagehelper:
+  params: count=countSql
+  helper-dialect: mapper
+
+mybatis:
+  mapper-locations: classpath:${pagehelper.helper-dialect}/**/*.xml
+#  type-handlers-package: com.yjyz.erp.customer.srv.utils.handler
