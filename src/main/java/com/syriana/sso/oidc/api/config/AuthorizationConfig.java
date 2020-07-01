@@ -64,7 +64,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .allowFormAuthenticationForClients();// 表单认证申请令牌
     }
 
-    // 客户端详情配置
+    // 客户端详情配置  建议在数据库生成
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -94,7 +94,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
         return services;
     }
 
-    // 授权码服务
+    // 授权码服务   建议在数据库生成
     @Bean
     public AuthorizationCodeServices authorizationCodeServices() {
         return new InMemoryAuthorizationCodeServices();
