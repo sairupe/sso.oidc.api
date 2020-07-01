@@ -5,6 +5,7 @@ import com.syriana.sso.oidc.api.exception.IncorrectPasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,9 +37,6 @@ public class SelfAuthenticationProvider implements AuthenticationProvider {
         ErpUserDetail erpUserDetail = (ErpUserDetail) userDetails;
         SelfAuth selfAuth = new SelfAuth();
         selfAuth.setErpUserDetail(erpUserDetail);
-        if (true) {
-            throw new IncorrectPasswordException("密码错误!");
-        }
         return selfAuth;
     }
 

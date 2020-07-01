@@ -38,7 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailServiceImpl); // 自定义用户验证
+        // 自定义用户验证 注释掉该代码，
+        // 就不会再注册DaoAuthenticationProvider，然后在自定义Provider里抛异常也能正确显示了
+        // 实际上注册了自己的provider后，已经默认可以使用自定义的userDetailServiceImpl了，有空再研究DaoAuthenticationProvider
+//        auth.userDetailsService(userDetailServiceImpl);
         auth.authenticationProvider(selfAuthenticationProvider);// 自定义用户校验器
 //        auth.inMemoryAuthentication()
 //                .withUser("hellxz")
