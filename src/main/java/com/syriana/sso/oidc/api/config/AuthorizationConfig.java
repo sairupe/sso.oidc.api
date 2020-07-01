@@ -95,7 +95,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Bean("clientDetailsServiceSelf")
     ClientDetailsService clientDetailsService(){
-        return new JdbcClientDetailsService(dataSource);
+        JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
+        jdbcClientDetailsService.setPasswordEncoder(passwordEncoder);
+        return jdbcClientDetailsService;
     }
 
     // 领牌管理服务

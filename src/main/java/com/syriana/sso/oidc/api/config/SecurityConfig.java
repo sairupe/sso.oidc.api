@@ -26,8 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     SelfUserDetailServiceImpl userDetailServiceImpl;
     @Autowired
     SelfAuthenticationProvider selfAuthenticationProvider;
-    @Autowired
-    SelfBcryptPswEncoder selfBcryptPswEncoder;
+//    @Autowired
+//    SelfBcryptPswEncoder selfBcryptPswEncoder;
 
     @Bean
     @Override
@@ -40,10 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailServiceImpl); // 自定义用户验证
         auth.authenticationProvider(selfAuthenticationProvider);// 自定义用户校验器
-        auth.inMemoryAuthentication()
-                .withUser("hellxz")
-                .password(selfBcryptPswEncoder.encode("xyz"))
-                .authorities(Collections.emptyList());
+//        auth.inMemoryAuthentication()
+//                .withUser("hellxz")
+//                .password(selfBcryptPswEncoder.encode("xyz"))
+//                .authorities(Collections.emptyList());
     }
 
     @Override
