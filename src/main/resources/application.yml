@@ -6,10 +6,9 @@ spring:
     password: ${DATASOURCE_PASSWORD:123456}
 
     redis:
-      password: ${REDIS_PASSWORD:ujuz!@#$%}
-      database: ${REDIS_DATABASE:10}
+      database: ${REDIS_DATABASE:0}
       port: ${REDIS_PORT:6379}
-      host: ${REDIS_HOST:123.58.51.6}
+      host: ${REDIS_HOST:localhost}
       timeout: ${REDIS_TIMEOUT:10000}
 
 pagehelper:
