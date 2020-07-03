@@ -28,7 +28,7 @@ public class SelfAuth implements Authentication {
 
     @Override
     public Object getDetails() {
-        return erpUserDetail;
+        return "details";
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.syriana.sso.oidc.api.bo.ouath2;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 
@@ -10,11 +11,11 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 @Data
 public class RedisAccessCodeWrapperBo {
     /**
-     * 授权码
+     * authentication 原始序列化字节(没有无参构造无法反序列化)
      */
-    private String accessCode;
+    private byte[] authenticationBytes;
     /**
-     * 认证信息
+     * authentication JSON信息
      */
-    private OAuth2Authentication oAuth2Authentication;
+    private String authenticationJson;
 }

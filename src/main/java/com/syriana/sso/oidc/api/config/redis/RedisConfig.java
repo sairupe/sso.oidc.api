@@ -1,5 +1,6 @@
 package com.syriana.sso.oidc.api.config.redis;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,11 @@ public class RedisConfig {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 
+//        FastJsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJsonRedisSerializer<>(Object.class);
+//        // fastjson在2017年3月爆出了在1.2.24以及之前版本存在远程代码执行高危安全漏洞。
+//        // 所以要使用ParserConfig.getGlobalInstance().addAccept("com.xiaolyuh.");指定序列化白名单
+//        ParserConfig.getGlobalInstance().addAccept("com.syriana.sso.oidc.api.");
+
         redisTemplate.setKeySerializer(keySerializer());
         redisTemplate.setHashKeySerializer(keySerializer());
         redisTemplate.setValueSerializer(valueSerializer());
@@ -41,4 +47,8 @@ public class RedisConfig {
     private RedisSerializer<Object> valueSerializer() {
         return new MyGenericJackson2JsonRedisSerializer();
     }
+
+//    private RedisSerializer<Object> valueSerializer() {
+//        return new FastJsonRedisSerializer<>(Object.class);
+//    }
 }
