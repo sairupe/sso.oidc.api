@@ -93,12 +93,12 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
      * resource [org/springframework/security/oauth2/config/annotation/configuration/ClientDetailsServiceConfiguration.class]
      * and overriding is disabled.
      */
-    @Bean("clientDetailsServiceSelf")
-    ClientDetailsService clientDetailsService(){
-        JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
-        jdbcClientDetailsService.setPasswordEncoder(passwordEncoder);
-        return jdbcClientDetailsService;
-    }
+//    @Bean("clientDetailsServiceSelf")
+//    ClientDetailsService clientDetailsService(){
+//        JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
+//        jdbcClientDetailsService.setPasswordEncoder(passwordEncoder);
+//        return jdbcClientDetailsService;
+//    }
 
     // 领牌管理服务
     @Bean

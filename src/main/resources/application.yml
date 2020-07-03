@@ -13,12 +13,13 @@ spring:
 
 pagehelper:
   params: count=countSql
-  helper-dialect: mapper
+  helper-dialect: mysql
 
 mybatis:
-  mapper-locations: classpath:${pagehelper.helper-dialect}/**/*.xml
+  mapper-locations: classpath:/mapper/**/*.xml
 #  type-handlers-package: com.yjyz.erp.customer.srv.utils.handler
 
 logging:
+  config: classpath:logback.xml
   level:
-    root: debug
+    root: info
