@@ -1,4 +1,4 @@
-package com.syriana.sso.oidc.api.config;
+package com.syriana.sso.oidc.api.config.oauth2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -122,8 +122,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 //    public AuthorizationCodeServices authorizationCodeServices() {
 //        return new InMemoryAuthorizationCodeServices();
 //    }
-    @Bean
-    public AuthorizationCodeServices authorizationCodeServices(DataSource dataSource) {
-        return new JdbcAuthorizationCodeServices(dataSource);
-    }
+//    @Bean
+//    public AuthorizationCodeServices authorizationCodeServices(DataSource dataSource) {
+//        return new JdbcAuthorizationCodeServices(dataSource);
+//    }
 }

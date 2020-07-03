@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author syriana.zh
  * @date 2020/07/02
  */
-@Configuration()
+@Configuration
 @Component("clientDetailsServiceSelf")
 public class SelfClientDetailServiceImpl implements ClientDetailsService {
 

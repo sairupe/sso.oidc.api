@@ -1,4 +1,4 @@
-package com.syriana.sso.oidc.api.bo;
+package com.syriana.sso.oidc.api.bo.ouath2;
 
 import com.syriana.sso.oidc.api.service.authorization.SelfGrantedAuthority;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2020/06/23
  */
 @Data
-public class ErpUserDetail implements UserDetails {
+public class ErpUserDetailBo implements UserDetails {
 
     private String userName;
 

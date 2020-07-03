@@ -1,4 +1,4 @@
-package com.syriana.sso.oidc.api.config;
+package com.syriana.sso.oidc.api.config.oauth2;
 
 import com.syriana.sso.oidc.api.service.authorization.SelfAuthenticationProvider;
 import com.syriana.sso.oidc.api.service.authorization.SelfBcryptPswEncoder;

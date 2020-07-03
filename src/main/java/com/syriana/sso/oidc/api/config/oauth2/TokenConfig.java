@@ -1,5 +1,6 @@
-package com.syriana.sso.oidc.api.config;
+package com.syriana.sso.oidc.api.config.oauth2;
 
+import com.syriana.sso.oidc.api.config.redis.RedisKeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +36,9 @@ public class TokenConfig {
 
     @Bean
     public TokenStore tokenStore() {
-        return new RedisTokenStore(connectionFactory);
+        RedisTokenStore redisTokenStore = new RedisTokenStore(connectionFactory);
+        redisTokenStore.setPrefix(RedisKeyGenerator.KEY_ACCESS_TOEKN);
+        return redisTokenStore;
     }
 
     @Bean

@@ -1,6 +1,6 @@
 package com.syriana.sso.oidc.api.service.authorization;
 
-import com.syriana.sso.oidc.api.bo.ErpUserDetail;
+import com.syriana.sso.oidc.api.bo.ouath2.ErpUserDetailBo;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +19,7 @@ public class SelfUserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        ErpUserDetail userDetails = new ErpUserDetail();
+        ErpUserDetailBo userDetails = new ErpUserDetailBo();
         userDetails.setUserName("12315");
         userDetails.setPassword("12315");
         userDetails.setFlag(true);

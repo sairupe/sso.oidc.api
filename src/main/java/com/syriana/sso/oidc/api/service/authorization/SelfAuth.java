@@ -1,6 +1,6 @@
 package com.syriana.sso.oidc.api.service.authorization;
 
-import com.syriana.sso.oidc.api.bo.ErpUserDetail;
+import com.syriana.sso.oidc.api.bo.ouath2.ErpUserDetailBo;
 import lombok.Data;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +14,7 @@ import java.util.Collection;
 @Data
 public class SelfAuth implements Authentication {
 
-    private ErpUserDetail erpUserDetail;
+    private ErpUserDetailBo erpUserDetail;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

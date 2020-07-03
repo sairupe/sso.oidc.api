@@ -133,6 +133,12 @@
 			<artifactId>logback-access</artifactId>
 			<version>1.2.3</version>
 		</dependency>
+		<!-- JSON -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.72</version>
+		</dependency>
 
 	</dependencies>
 
