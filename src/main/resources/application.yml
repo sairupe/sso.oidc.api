@@ -18,3 +18,7 @@ pagehelper:
 mybatis:
   mapper-locations: classpath:${pagehelper.helper-dialect}/**/*.xml
 #  type-handlers-package: com.yjyz.erp.customer.srv.utils.handler
+
+logging:
+  level:
+    root: debug

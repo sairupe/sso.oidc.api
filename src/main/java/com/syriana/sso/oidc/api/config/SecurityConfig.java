@@ -54,11 +54,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated() //所有请求都需要通过认证
                 .and()
-                // Basic登录, 如果开启，调用oauth/authorize时，
-                // 选择BASIC AUTH 填入用户账号密码，直接就能选择是否授权
-                // 否则，就要手动登录
+                // Basic登录, 如果设置了这个，必须要在头里加上才能访问  --似乎解释不对
+                // client_id 和 client_secreat必须在head中的Authorization中BASE 64 ENCODE
+                // 正确的解释，弹出HTTP自己的密码登录框
 //                .httpBasic()
 //                .and()
+
+                // 表单登录, 开启就是SPRINGBOOT的页面，不开启就是浏览器弹框 --似乎解释不对
+                // 弹出自己自定义登录框
+                // client_id 和 client_secreat可以在表单中提交
                 .formLogin()
                 .and()
                 .csrf().disable(); //关跨域保护
