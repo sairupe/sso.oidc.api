@@ -39,7 +39,7 @@ public class TokenConfig {
     public TokenStore tokenStore() {
         RedisTokenStore redisTokenStore = new RedisTokenStore(connectionFactory);
         redisTokenStore.setPrefix(RedisKeyGenerator.KEY_ACCESS_TOEKN);
-//        redisTokenStore.setSerializationStrategy(new FastjsonRedisTokenStoreSerializationStrategy());
+        redisTokenStore.setSerializationStrategy(new FastjsonRedisTokenStoreSerializationStrategy());
         return redisTokenStore;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author syriana.zh
@@ -19,6 +20,12 @@ public class SelfAuth implements Authentication {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return erpUserDetail.getAuthorities();
+    }
+
+    // 兼容TOKEN:AUTH 字段反序列化报错，
+    // REDIS TOKEN JSON中有authorities字段，反序列化要调用set这里默认处理下？
+    public void setAuthorities(List list){
+
     }
 
     @Override
