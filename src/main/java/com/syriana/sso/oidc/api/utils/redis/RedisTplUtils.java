@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 /**
- * @Author: wangzhe
  * @Date: 2019-07-09
  */
 @Component

@@ -13,4 +13,17 @@ public class RestResult<T> {
     private T data;
     private String code = "200";
     private String requestId;
+
+
+    public static <T> RestResult suc(String message, T data){
+        RestResult restResult = new RestResult();
+        restResult.setData(data);
+        return restResult;
+    }
+
+    public static <T> RestResult suc(String message){
+        RestResult restResult = new RestResult();
+        restResult.setMsg(message);
+        return restResult;
+    }
 }

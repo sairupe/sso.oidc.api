@@ -6,10 +6,8 @@ spring:
     password: ${DATASOURCE_PASSWORD:123456}
 
     redis:
-      database: ${REDIS_DATABASE:0}
-      port: ${REDIS_PORT:6379}
-      host: ${REDIS_HOST:localhost}
-      timeout: ${REDIS_TIMEOUT:10000}
+      cluster:
+        nodes: 106.52.53.192:7001,106.52.53.192:7002,106.52.53.192:7003,106.52.53.192:7004,106.52.53.192:7005,106.52.53.192:7006
 
 pagehelper:
   params: count=countSql
