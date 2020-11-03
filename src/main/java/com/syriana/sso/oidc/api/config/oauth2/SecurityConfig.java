@@ -52,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/rpc/**").permitAll() // rpc请求放开
+                .antMatchers("/redis/**").permitAll() // redis请求放开
                 .anyRequest().authenticated() //所有请求都需要通过认证
                 .and()
                 // Basic登录, 如果设置了这个，必须要在头里加上才能访问  --似乎解释不对
