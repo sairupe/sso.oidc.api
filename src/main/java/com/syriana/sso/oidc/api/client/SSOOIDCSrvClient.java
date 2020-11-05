@@ -20,7 +20,6 @@ public class SSOOIDCSrvClient {
     @PostConstruct
     public void init(){
         apiClient = new ApiClient();
-        apiClient.setBasePath("http://localhost:8081/sso.oidc.srv");
     }
 
     @Bean
