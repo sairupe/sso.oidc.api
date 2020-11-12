@@ -52,6 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/swagger-ui.html").permitAll() //swagger放开
+                .antMatchers("/swagger-resources/**").permitAll() //swagger放开
+                .antMatchers("/webjars/**").permitAll() //swagger放开
+                .antMatchers("/v2/**").permitAll() //swagger放开
                 .antMatchers("/rpc/**").permitAll() // rpc请求放开
                 .antMatchers("/redis/**").permitAll() // redis请求放开
                 .anyRequest().authenticated() //所有请求都需要通过认证
