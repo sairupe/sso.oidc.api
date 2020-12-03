@@ -22,6 +22,7 @@ public class SelfUserDetailServiceImpl implements UserDetailsService {
         ErpUserDetailBo userDetails = new ErpUserDetailBo();
         userDetails.setUserName("12315");
         userDetails.setPassword("12315");
+        userDetails.setUserId(12315L);
         userDetails.setFlag(true);
         List<SelfGrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(new SelfGrantedAuthority("p1"));

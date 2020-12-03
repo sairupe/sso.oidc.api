@@ -15,6 +15,8 @@ import java.util.List;
 @Data
 public class ErpUserDetailBo implements UserDetails {
 
+    private Long userId;
+
     private String userName;
 
     private String password;
