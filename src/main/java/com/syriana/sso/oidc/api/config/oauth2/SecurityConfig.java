@@ -28,6 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     SelfAuthenticationProvider selfAuthenticationProvider;
 //    @Autowired
 //    SelfBcryptPswEncoder selfBcryptPswEncoder;
+    @Autowired
+    AuthenticationSuccessHandler authenticationSuccessHandler;
+    @Autowired
+    AuthenticationFailureHandler authenticationFailureHandler;
 
     @Bean
     @Override
@@ -76,6 +80,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 弹出自己自定义登录框
                 // client_id 和 client_secreat可以在表单中提交
                 .formLogin()
+                .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler)
                 .and()
                 .csrf().disable(); //关跨域保护
     }
