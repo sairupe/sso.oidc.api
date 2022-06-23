@@ -61,6 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated() //所有请求都需要通过认证
                 .and()
                 // Basic登录, 如果设置了这个，必须要在头里加上才能访问  --似乎解释不对
+                // 如果客户端是浏览器，那么此时就会弹出⼀个弹窗，让⽤户输⼊⽤户名和密码 请求
+                // Basic BASE64(userName:password)
+
+                // GET /family/son.jpg  HTTP/1.1
+                //Authorization: Basic U2h1c2hlbmcwMDcldUZGMUFzczAwNw==
+
                 // client_id 和 client_secreat必须在head中的Authorization中BASE 64 ENCODE
                 // 正确的解释，弹出HTTP自己的密码登录框
 //                .httpBasic()
