@@ -4,6 +4,7 @@ import com.syriana.sso.oidc.api.bo.ouath2.ErpUserDetailBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +30,10 @@ public class SelfAuthenticationProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
         // 获取封装用户信息的对象
         UserDetails userDetails = selfUserDetailService.loadUserByUsername(username);
+        String dbUserPassword = userDetails.getPassword();
+        if (!selfBcryptPswEncoder.matches(password, dbUserPassword)) {
+           throw new BadCredentialsException("密码错误!");
+        }
         ErpUserDetailBo erpUserDetail = (ErpUserDetailBo) userDetails;
         SelfAuth selfAuth = new SelfAuth();
         selfAuth.setErpUserDetail(erpUserDetail);
