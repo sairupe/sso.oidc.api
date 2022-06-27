@@ -31,9 +31,9 @@ public class SelfAuthenticationProvider implements AuthenticationProvider {
         // 获取封装用户信息的对象
         UserDetails userDetails = selfUserDetailService.loadUserByUsername(username);
         String dbUserPassword = userDetails.getPassword();
-        if (!selfBcryptPswEncoder.matches(password, dbUserPassword)) {
-           throw new BadCredentialsException("密码错误!");
-        }
+//        if (!selfBcryptPswEncoder.matches(password, dbUserPassword)) {
+//           throw new BadCredentialsException("密码错误!");
+//        }
         ErpUserDetailBo erpUserDetail = (ErpUserDetailBo) userDetails;
         SelfAuth selfAuth = new SelfAuth();
         selfAuth.setErpUserDetail(erpUserDetail);
