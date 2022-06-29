@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 import java.util.Collections;
 
@@ -86,5 +87,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable(); //关跨域保护
         // 允许跨域
         http.cors();
+        // 无状态
+        // spring security会在默认的情况下将认证信息放到HttpSession中。
+        // 但是对于我们的前后端分离的情况，如app，小程序，web前后分离等，httpSession就没有用武之地了。这时我们可以通过configure(httpSecurity)设置spring security是否使用httpSession。
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 }
