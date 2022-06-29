@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,11 @@ import java.util.List;
  * @date 2020/06/23
  */
 @Configuration
+@Service
 public class SelfUserDetailServiceImpl implements UserDetailsService {
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         ErpUserDetailBo userDetails = new ErpUserDetailBo();
         userDetails.setUserName("12315");
         userDetails.setPassword("12315");

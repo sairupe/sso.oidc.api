@@ -84,5 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(authenticationFailureHandler)
                 .and()
                 .csrf().disable(); //关跨域保护
+        // 允许跨域
+        http.cors();
     }
 }
